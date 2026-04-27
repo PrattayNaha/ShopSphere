@@ -1,0 +1,125 @@
+/* Whole page styling */
+.register-page {
+  min-height: 100vh;            /* Use min-height for mobile safety */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f8;
+  padding: 90px;                /* Prevent content touching edges */
+}
+
+/* Main container */
+.register-container {
+  width: 900px;
+  max-width: 100%;              /* Allow shrinking on small screens */
+  min-height: 500px;
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.register-left {
+  flex: 1;
+  color: white;
+  padding: 60px;
+
+  background-image: url("/images/login-page.jpg"); /* or register-bg.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+.register-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(50, 50, 50, 0.5);
+  z-index: 1;
+}
+
+.register-left * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Right section */
+.register-right {
+  flex: 1;
+  padding: 60px;
+}
+
+/* Form styling */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-form input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.register-form button {
+  padding: 14px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  background: #4338ca;
+}
+
+
+@media (max-width: 768px) {
+
+  /* Stack sections vertically */
+  .register-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Hide branding section */
+  .register-left {
+    display: none;
+  }
+
+  /* Reduce padding */
+  .register-right {
+    padding: 40px 25px;
+  }
+
+  .register-form input,
+  .register-form button {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .register-right {
+    padding: 30px 20px;
+  }
+
+  .register-form {
+    gap: 16px;
+  }
+
+  .register-form input,
+  .register-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,272 @@
+/* ================= TOPBAR ROOT ================= */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.topbar.scrolled {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ================= LEFT ================= */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 35px;
+  font-weight: 700;
+  color: #38669b;
+}
+
+/* ================= ICON BUTTON ================= */
+.icon-btn11 {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ================= GLOBAL ICON STYLE ================= */
+.topbar-icon11 {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.topbar-icon2 {
+  margin-top: 0px;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.icon-btn11:hover .topbar-icon11 {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+
+/* ================= SEARCH ================= */
+.topbar-search {
+  display: flex;
+  height: 45px;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  padding: 8px 14px;
+  border-radius: 999px;
+  flex: 1;
+  max-width: 520px;
+  margin: 0 16px;
+  position: relative; /* for dropdown positioning */
+}
+
+.topbar-search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 30px;
+  background: transparent;
+  font-size: 15px;
+}
+
+/* ================= RIGHT ================= */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Profile button circle */
+.profile-btn {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Container for the dropdown */
+.search-dropdown {
+  position: absolute;       /* stays absolute relative to .topbar-search */
+  top: 100%;                /* right below the search input */
+  left: 0;
+  width: 100%;              /* match parent width exactly */
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+.search-dropdown {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.15s ease;
+}
+
+.topbar-search .search-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Each suggestion item */
+.search-dropdown div {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Hover effect */
+.search-dropdown div:hover {
+  background-color: #f0f0f0; /* light gray on hover */
+}
+
+/* Optional: hide scrollbar for nicer look */
+.search-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.search-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .topbar {
+    height: 58px;          /* ⬅ shrink height */
+    padding: 0 12px;
+  }
+
+  .logo {
+    font-size: 26px;       /* ⬅ smaller logo */
+  }
+
+  .topbar-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .topbar-icon2 {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* hide search inside topbar */
+  .topbar-search {
+    display: none;
+  }
+}
+
+/* ================= PROFILE DROPDOWN ================= */
+.profile-dropdown {
+  position: absolute;
+  top: 68px;                 /* aligns with 75px topbar */
+  right: 0;
+  width: 200px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1200;
+  animation: dropdownFade 0.18s ease-out;
+}
+
+/* subtle animation */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* dropdown buttons */
+.profile-dropdown button {
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 12px 18px;
+  text-align: left;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+/* hover state */
+.profile-dropdown button:hover {
+  background: #f1f5f9;       /* matches search bg */
+  color: #1e293b;
+}
+
+/* divider */
+.profile-dropdown hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 6px 0;
+}
+
+/* logout emphasis */
+.profile-dropdown .logout-btn {
+  color: #dc2626;
+}
+
+.profile-dropdown .logout-btn:hover {
+  background: #fee2e2;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .profile-dropdown {
+    top: 54px;              /* aligns with 58px topbar */
+    width: 190px;
+  }
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

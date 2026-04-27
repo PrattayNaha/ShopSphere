@@ -1,0 +1,142 @@
+/* Full page styling */
+.login-page {
+  min-height: 100vh;                 /* Use min-height instead of height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f8;
+  padding: 20px;                     /* Prevent edge overflow on mobile */
+}
+
+/* Card container */
+.login-container {
+  width: 900px;
+  max-width: 100%;                   /* Important for mobile */
+  min-height: 500px;
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.login-left {
+  flex: 1;
+  color: white;
+  padding: 60px;
+
+  background: url("/images/login-page.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+.login-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(50, 50, 50, 0.5); /* opacity control */
+}
+
+.login-left * {
+  position: relative;
+}
+
+
+
+.login-left h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Right form section */
+.login-right {
+  flex: 1;
+  padding: 60px;
+}
+
+/* Login form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.login-form button {
+  padding: 14px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background: #4338ca;
+}
+
+/* Error message */
+.error-text {
+  color: red;
+  font-size: 14px;
+}
+
+/* Link text */
+.link-text {
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+@media (max-width: 768px) {
+
+  /* Stack sections vertically */
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Hide left branding on small screens */
+  .login-left {
+    display: none;
+  }
+
+  /* Reduce padding for mobile */
+  .login-right {
+    padding: 40px 25px;
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .login-right {
+    padding: 30px 20px;
+  }
+
+  .login-form {
+    gap: 16px;
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

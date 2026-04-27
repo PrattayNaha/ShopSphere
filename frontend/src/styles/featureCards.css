@@ -1,0 +1,39 @@
+.feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 0;
+  flex-wrap: wrap; /* responsive */
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.feature-card img {
+  width: 32px;
+  height: 32px;
+}
+
+.feature-card span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.feature-card span strong {
+  color: #ef4444; /* red highlight */
+}

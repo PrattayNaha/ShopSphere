@@ -1,0 +1,413 @@
+.customer-profile-page {
+  background: #f5f7fa;
+  padding: 40px 0;
+}
+
+.profile-container {
+  padding: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+}
+
+/* LEFT MENU */
+.profile-menu {
+  width: 280px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.profile-menu h4 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 15px;
+}
+
+.profile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.profile-menu li {
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.profile-menu li:hover,
+.profile-menu li.active {
+  background: #38669b;
+  color: #fff;
+}
+
+/* RIGHT CONTENT */
+.profile-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.profile-content2 {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.profile-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.profile-card h3 {
+  margin-bottom: 15px;
+  color: #38669b;
+}
+
+/* Make section titles clickable */
+.menu-title {
+  margin-bottom: 10px;
+  color: #38669b;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* Active state for section title */
+.menu-title:hover,
+.menu-title.active {
+  color: #38669b;
+}
+
+/* Recent Orders Table */
+/* ================= BASE CARD ================= */
+.profile-card2 {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  width: 100%;
+}
+
+/* Card title */
+.profile-card2 h3 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #38669b;
+}
+
+/* Card text */
+.profile-card2 p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #000;
+}
+
+/* ================= RECENT ORDERS FULL WIDTH ================= */
+.profile-card2:has(.recent-orders-table) {
+  grid-column: 1 / -1;
+}
+
+/* ================= RECENT ORDERS TABLE ================= */
+.recent-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* FORCE REMOVE ANY DEFAULT BACKGROUND */
+.recent-orders-table th,
+.recent-orders-table td {
+  background: transparent !important;
+  text-align: left;
+  padding: 12px 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Table header */
+.recent-orders-table th {
+  font-weight: 600;
+}
+
+/* REMOVE ALL HOVER EFFECTS */
+.recent-orders-table tr:hover,
+.recent-orders-table td:hover,
+.recent-orders-table th:hover {
+  background: #f5f7fa;
+}
+
+/* ================= PRODUCT COLUMN ================= */
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 360px;
+}
+
+.product-thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.product-cell span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  line-height: 1.3;
+}
+
+
+/*====================MY ORDSERS PAGE STYLES==================*/
+
+.recent-orders-table2 {
+  margin:-25px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* FORCE REMOVE ANY DEFAULT BACKGROUND */
+.recent-orders-table2 th,
+.recent-orders-table2 td {
+  background: transparent !important;
+  text-align: left;
+  padding: 12px 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Table header */
+.recent-orders-table2 th {
+  font-weight: 600;
+}
+
+/* REMOVE ALL HOVER EFFECTS */
+.recent-orders-table2 tr:hover,
+.recent-orders-table2 td:hover,
+.recent-orders-table2 th:hover {
+  background: #f5f7fa;
+}
+
+/* Order status */
+.status {
+  font-weight: 600;
+}
+
+
+.edit-btn-c, .save-btn, .cancel-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn-c {
+  background-color: #38669b;
+  color: #fff;
+}
+
+.save-btn {
+  background-color: #16a34a;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.cancel-btn {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-input input,
+.form-input select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.address-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.selection-input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20%;
+}
+
+/* ================= TABLE REFINEMENT ================= */
+.recent-orders-table th:first-child,
+.recent-orders-table2 th:first-child {
+  width: 48%;
+}
+
+.recent-orders-table td,
+.recent-orders-table2 td {
+  vertical-align: middle;
+}
+
+/* ================= STATUS COLORS ================= */
+.status.delivered {
+  color: #16a34a;
+}
+
+.status.pending {
+  color: #ca8a04;
+}
+
+.status.cancelled {
+  color: #dc2626;
+}
+
+/* ================= HOVER ================= */
+.recent-orders-table tr:hover,
+.recent-orders-table2 tr:hover {
+  background: #f8fafc;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .product-cell {
+    max-width: 260px;
+  }
+
+  .product-thumb {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Tablets & below */
+@media (max-width: 1024px) {
+  .profile-container {
+    padding: 30px 20px;
+    gap: 20px;
+  }
+
+  .profile-menu {
+    width: 240px;
+  }
+}
+
+/* Mobile & small tablets */
+@media (max-width: 768px) {
+  .customer-profile-page {
+    padding: 20px 0;
+  }
+
+  .profile-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* Sidebar becomes full width */
+  .profile-menu {
+    width: 100%;
+  }
+
+  /* Content becomes single column */
+  .profile-content,
+  .profile-content2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards spacing */
+  .profile-card,
+  .profile-card2 {
+    padding: 20px;
+  }
+
+  /* Tables scroll horizontally */
+  .recent-orders-table,
+  .recent-orders-table2 {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .recent-orders-table th,
+  .recent-orders-table td,
+  .recent-orders-table2 th,
+  .recent-orders-table2 td {
+    padding: 10px 12px;
+  }
+
+  /* Buttons full width */
+  .edit-btn-c,
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .save-btn {
+    margin-bottom: 10px;
+  }
+
+  /* Inputs full width */
+  .selection-input {
+    width: 100%;
+  }
+}
+
+.cancel-btn {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #e60000;
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .profile-menu h4 {
+    font-size: 14px;
+  }
+
+  .profile-menu li {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .profile-card h3,
+  .profile-card2 h3 {
+    font-size: 18px;
+  }
+
+  .profile-card p,
+  .profile-card2 p {
+    font-size: 13px;
+  }
+}

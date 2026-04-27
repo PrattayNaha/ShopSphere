@@ -1,0 +1,77 @@
+.vendor-login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+}
+
+.vendor-login-container {
+  width: 900px;
+  height: 500px;
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.vendor-left {
+  flex: 1;
+  background: linear-gradient(135deg, #020617, #1e293b);
+  color: white;
+  padding: 60px;
+}
+
+.vendor-right {
+  flex: 1;
+  padding: 60px;
+}
+
+.vendor-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vendor-login-form input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.vendor-login-form button {
+  padding: 14px;
+  background: #020617;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.vendor-login-form button:hover {
+  background: #1e293b;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .vendor-login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .vendor-left {
+    display: none;
+  }
+
+  .vendor-right {
+    padding: 30px;
+  }
+}

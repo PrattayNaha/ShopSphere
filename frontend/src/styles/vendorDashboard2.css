@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-base: #0a0a0f;
+  --bg-surface: #111118;
+  --bg-elevated: #18181f;
+  --bg-card: #1a1a23;
+  --bg-card-hover: #1e1e28;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-active: rgba(59, 130, 246, 0.4);
+  --blue: #3b82f6;
+  --blue-bright: #60a5fa;
+  --blue-dim: rgba(59, 130, 246, 0.12);
+  --blue-glow: rgba(59, 130, 246, 0.25);
+  --text-primary: #f1f1f5;
+  --text-secondary: #8b8b9a;
+  --text-muted: #4f4f60;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --gradient-card: linear-gradient(135deg, #1a1a23 0%, #161620 100%);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255,255,255,0.04) inset;
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  padding: 28px 32px;
+  background: var(--bg-base);
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.dashboard::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 40%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 5px;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs button {
+  padding: 9px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  text-transform: capitalize;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tabs button:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tabs button.active {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.35);
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: var(--gradient-card);
+  padding: 22px 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  background: var(--bg-card-hover);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after {
+  transform: scale(1.4);
+  opacity: 0.8;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+/* ===== CHART ===== */
+.chart {
+  background: var(--gradient-card);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+/* ===== PANEL ===== */
+.panel {
+  background: var(--gradient-card);
+  padding: 22px 24px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  z-index: 1;
+}
+
+.panel h3,
+.panel h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel h4 {
+  font-size: 14px;
+}
+
+/* ===== LIST ITEMS ===== */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  color: var(--blue-bright);
+}
+
+.list-item span {
+  background: var(--blue-dim);
+  color: var(--blue-bright);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  font-family: 'Syne', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* ===== WARNING / DANGER ===== */
+.warning {
+  color: var(--warning);
+}
+
+.warning span {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--warning);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.danger span {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* ===== LOADING ===== */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  background: var(--bg-base);
+  gap: 12px;
+}
+
+.loading::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== PRODUCTS GRID ===== */
+.products-grid {
+  display: grid;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TABLE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.table th {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text-primary);
+  transition: background 0.15s;
+}
+
+.table tr:hover td {
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table td:last-child {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  color: var(--blue-bright);
+}
+
+/* ===== INVENTORY GRID ===== */
+.inventory-grid {
+  display: grid;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SECTION BADGE ===== */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blue-dim);
+  color: var(--blue-bright);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  margin-bottom: 20px;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    padding: 16px;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}

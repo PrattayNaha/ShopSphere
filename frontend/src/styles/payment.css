@@ -1,0 +1,252 @@
+/* ================= PAYMENT PAGE ================= */
+
+.payment-page {
+  background: #f5f7fb;
+  min-height: 100vh;
+  padding: 90px 20px;
+}
+
+/* Centered container */
+.payment-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+}
+
+/* ================= CARDS ================= */
+
+.order-summary,
+.payment-method {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+.order-summary h2,
+.payment-method h2 {
+  color: #38669b;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+/* ================= ORDER SUMMARY ================= */
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: #333;
+}
+
+.summary-item span:last-child {
+  font-weight: 600;
+}
+
+.summary-total2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #e5e7eb;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* ================= PAYMENT METHOD ================= */
+
+.payment-method label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #333;
+}
+
+.payment-method input[type="radio"] {
+  accent-color: #38669b;
+}
+
+/* Stripe card element */
+.card-element {
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin: 20px 0;
+  background: #fafafa;
+}
+
+/* ================= PAY BUTTON ================= */
+
+.pay-btn {
+  width: 100%;
+  padding: 14px;
+  background: #38669b;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.pay-btn:hover {
+  background: #2f5683;
+  transform: translateY(-1px);
+}
+
+.pay-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+  .payment-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-page {
+    padding: 25px 15px;
+  }
+
+  .order-summary,
+  .payment-method {
+    padding: 20px;
+  }
+
+  .order-summary h2,
+  .payment-method h2 {
+    font-size: 20px;
+  }
+
+  .summary-total {
+    font-size: 16px;
+  }
+}
+
+
+
+/* ================= PAYMENT MODAL ================= */
+
+.payment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.payment-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ================= CARD GATEWAY ================= */
+
+.card-gateway h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #38669b;
+}
+
+.card-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.card-field label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.card-field input {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.payment-status-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.payment-status-box.success h3 {
+  color: #2ecc71;
+}
+
+.payment-status-box.failed h3 {
+  color: #e74c3c;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

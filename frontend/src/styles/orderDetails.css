@@ -1,0 +1,227 @@
+.order-details-page12 {
+  background: #f4f6fa;
+  padding: 30px 0;
+}
+
+.order-details-container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.order-details-container h2 {
+  margin-bottom: 20px;
+  color: #38669b;
+}
+
+.order-header-card12 {
+  background: #fff;
+  padding: 18px 22px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.status {
+  color: #38669b;
+  font-weight: 600;
+}
+
+.badge.completed12 {
+  background: #38669b;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.order-card12 {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.card-title12 {
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #38669b;
+}
+
+.order-item-row12 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item-row12:last-child {
+  border-bottom: none;
+}
+
+.order-item-row12 img {
+  width: 80px;
+  border-radius: 6px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.item-qty {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.order-info-grid12 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.summary-row12,
+.summary-total12 {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.summary-total12 {
+  font-size: 18px;
+  margin-top: 14px;
+}
+
+.payment-method12 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= DELIVERY BADGE ================= */
+.delivery-badge {
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* COLORS */
+.delivery-badge.placed {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+}
+
+.delivery-badge.shipped {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+}
+
+.delivery-badge.delivered {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+}
+
+.delivery-badge.returened {
+  background: linear-gradient(135deg, #cd3636, #961805);
+  color: #fff;
+}
+
+/* ================= PROGRESS BAR ================= */
+.delivery-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 25px 0;
+  position: relative;
+}
+
+/* LINE CONNECTOR */
+.delivery-progress::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 4px;
+  background: #e5e7eb;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+/* STEP */
+.step {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+/* STEP CIRCLE */
+.step::before {
+  content: "";
+  display: block;
+  margin: 0 auto 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d1d5db;
+  transition: all 0.3s ease;
+}
+
+/* ACTIVE STEP */
+.step.active {
+  color: #111827;
+}
+
+/* ACTIVE DOT */
+.step.active::before {
+  background: #007bff;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+/* COMPLETED STEP */
+.step.completed::before {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.variant-box12 {
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.variant-badge12 {
+  background: #eef2f7;
+  border: 1px solid #d0d7de;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .order-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,251 @@
+/* ================= CART PAGE ================= */
+
+.cart-page {
+  flex: 1;
+  background-color: #f5f5f5;
+  padding: 90px 20px 40px;
+}
+
+/* ================= CONTAINER ================= */
+
+.cart-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* ================= LEFT: CART ITEMS ================= */
+
+.cart-items {
+  flex: 2;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.cart-items h2 {
+  margin-bottom: 20px;
+  color: #38669b;
+}
+
+/* ================= CART ITEM ================= */
+
+.cart-item {
+  display: flex;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* ================= ACTIONS ================= */
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-control button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.cart-item-price {
+  font-weight: 600;
+  font-size: 18px;
+  color: #38669b;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #d11a2a;
+  font-size: 20px;
+}
+
+/* ================= RIGHT: ORDER SUMMARY ================= */
+
+.order-summary {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  position: sticky;
+  top: 100px;
+}
+
+.order-summary h3 {
+  color: #38669b;
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* ================= BUTTONS ================= */
+
+.checkout-btn {
+  width: 100%;
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+
+.continue-shopping {
+  width: 200px;
+  padding: 8px;
+  margin-top: 10px;
+  border: 2px solid #38669b;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.continue-shopping:hover {
+  background: #38669b;
+  color: #fff;
+}
+
+/* ===== VARIANT WRAPPER ===== */
+.cart-item-variant {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* ===== SINGLE VARIANT BADGE ===== */
+.variant-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 999px;
+  margin-bottom: 10px;
+
+  background: #f3f4f6;   /* light gray */
+  color: #333;
+  border: 1px solid #e5e7eb;
+
+  transition: all 0.2s ease;
+}
+
+/* hover effect */
+.variant-badge:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* optional: different color if you want highlight */
+.variant-badge.highlight {
+  background: #111827;
+  color: white;
+  border: none;
+}
+
+/* ================= MOBILE ================= */
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cart-container {
+    flex-direction: column;
+  }
+
+  .cart-items,
+  .order-summary {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item-image {
+    width: 25%;
+    max-width: 200px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .cart-item-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .quantity-control {
+    margin-bottom: 10px;
+  }
+
+  .cart-item-price {
+    font-size: 18px;
+  }
+
+  .order-summary {
+    margin-top: 20px;
+  }
+
+  .checkout-btn,
+  .continue-shopping,
+  .apply-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .cart-page {
+    padding: 80px 10px 50px 10px;
+  }
+
+  .cart-items h2 {
+    font-size: 20px;
+  }
+}

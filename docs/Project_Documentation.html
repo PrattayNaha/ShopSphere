@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EcommerceProject — Documentation</title>
+  <style>
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#222; line-height:1.6; margin:0; padding:24px;}
+    header{border-bottom:1px solid #e6e6e6; margin-bottom:18px; padding-bottom:12px}
+    h1{font-size:28px; margin:0}
+    h2{font-size:18px; margin-top:18px}
+    ul{margin:8px 0 8px 20px}
+    pre, code{background:#f6f8fa;padding:6px;border-radius:4px}
+    .meta{color:#555;font-size:13px}
+    .section{page-break-inside:avoid}
+    @media print{body{padding:18px;} header{page-break-after:avoid}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EcommerceProject — Documentation</h1>
+    <div class="meta">Generated: March 16, 2026</div>
+  </header>
+
+  <section class="section">
+    <h2>Project Overview</h2>
+    <ul>
+      <li><strong>Type:</strong> Full-stack e-commerce application</li>
+      <li><strong>Backend:</strong> Django REST API (Django 6.x)</li>
+      <li><strong>Frontend:</strong> React (Vite)</li>
+      <li><strong>Database:</strong> SQLite (development)</li>
+      <li><strong>Auth:</strong> JWT via djangorestframework-simplejwt</li>
+      <li><strong>Payments:</strong> Stripe integration (webhook present)</li>
+      <li><strong>Media:</strong> Uploaded product images stored under media/products/</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Repository layout (important folders)</h2>
+    <ul>
+      <li><strong>backend/</strong> — Django project and apps (settings, manage.py, apps)</li>
+      <li><strong>frontend/</strong> — React + Vite app (src, package.json)</li>
+      <li><strong>media/</strong> — uploaded images (products sample images)</li>
+      <li><strong>docs/</strong> — documentation and conversion scripts</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Key configuration notes</h2>
+    <ul>
+      <li>Backend settings: <a href="../backend/backend/settings.py">backend/backend/settings.py</a>
+        <ul>
+          <li><strong>AUTH_USER_MODEL</strong> = accounts.User</li>
+          <li>MEDIA_ROOT set to <code>media/</code>; MEDIA served in DEBUG via <code>static()</code></li>
+          <li>REST framework config contains typos (verify keys such as <code>DeFAULT_PAGINATION_CLASS</code>)</li>
+          <li>Stripe keys present in settings — move to environment variables for production</li>
+        </ul>
+      </li>
+      <li>Dependencies (backend): <a href="../backend/requirements.txt">backend/requirements.txt</a></li>
+      <li>Frontend deps: <a href="../frontend/package.json">frontend/package.json</a></li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>How to run (development)</h2>
+    <p>Backend (assumes Python virtualenv activated):</p>
+    <pre>pip install -r backend/requirements.txt
+cd backend
+python manage.py migrate
+python manage.py runserver</pre>
+
+    <p>Frontend:</p>
+    <pre>cd frontend
+npm install
+npm run dev</pre>
+  </section>
+
+  <section class="section">
+    <h2>Main Django apps & important models</h2>
+    <ul>
+      <li><strong>accounts</strong> — Register, login, profile, password reset (see <a href="../backend/accounts/urls.py">accounts/urls.py</a>)</li>
+      <li><strong>products</strong> — Category, SubCategory, Product (see <a href="../backend/products/models.py">products/models.py</a>)</li>
+      <li><strong>orders</strong> — Cart, Order models and Stripe webhook (see <a href="../backend/orders/models.py">orders/models.py</a>)</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Frontend overview</h2>
+    <ul>
+      <li>Routes and pages defined in <a href="../frontend/src/App.jsx">frontend/src/App.jsx</a></li>
+      <li><a href="../frontend/src/components/Topbar.jsx">Topbar</a> implements search suggestions, cart badge, profile dropdown</li>
+      <li><a href="../frontend/src/main.jsx">main.jsx</a> wraps App with CartProvider and BrowserRouter</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>API endpoints (high level)</h2>
+    <ul>
+      <li>Base prefix: <code>/api/</code></li>
+      <li>Accounts/auth: <code>/api/register/</code>, <code>/api/login/</code>, <code>/api/profile/</code>, password reset endpoints</li>
+      <li>Stripe webhook: <code>/stripe-webhook/</code></li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Notable implementation details & TODOs</h2>
+    <ul>
+      <li>Fix typos in <code>settings.py</code> for REST and JWT keys.</li>
+      <li>Move secret keys to environment variables; dotenv is already loaded.</li>
+      <li>Verify pagination and throttle behavior in the REST settings.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Testing & data</h2>
+    <p>Run backend tests:</p>
+    <pre>cd backend
+python manage.py test</pre>
+  </section>
+
+  <section class="section">
+    <h2>Assets & media</h2>
+    <p>Sample images exist under <code>media/products/</code>.</p>
+  </section>
+
+  <section class="section">
+    <h2>Conversion to PDF</h2>
+    <p>This folder includes two conversion helpers:</p>
+    <ul>
+      <li><strong>docs/convert_html_to_pdf.bat</strong> — tries <code>wkhtmltopdf</code>, falls back to a Node Puppeteer script.</li>
+      <li><strong>docs/convert_with_puppeteer.js</strong> — Node script using Puppeteer to convert the HTML to PDF (downloads Chromium when first run).</li>
+    </ul>
+  </section>
+
+  <footer style="margin-top:28px;color:#666;font-size:13px">Documentation generated by repo analysis.</footer>
+</body>
+</html>

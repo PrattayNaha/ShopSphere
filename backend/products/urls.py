@@ -1,0 +1,38 @@
+from django.urls import path
+from .views import(
+    CategoryListCreateView,
+    CategoryDetailView,
+    SubCategoryDetailView,
+    SubCategoryListCreateView,
+    ProductListCreateView,
+    ProductDetailView,
+    PublicProductListView,
+    VendorProductDetailView,
+    VendorProductListCreateView,
+    PublicProductDetailBySlugView,
+    ProductSearchView,
+    ProductSuggestionView,
+    VariationListCreateView,
+    VariationOptionListCreateView,
+    ProductVariantListCreateView,
+    delete_product_variations,
+)
+
+urlpatterns = [
+    path("categories/", CategoryListCreateView.as_view(), name="category"),
+    path("categories/<slug:slug>/", CategoryDetailView.as_view(), name="categoryid"),
+    path("subcategories/", SubCategoryListCreateView.as_view(), name="subcategory"),
+    path("subcategories/<int:id>/", SubCategoryDetailView.as_view(), name="subcategoryid"),
+    path("products/", ProductListCreateView.as_view(), name = "productList"),
+    path("products/<int:pk>/", ProductDetailView.as_view(), name="productsid"),
+    path("public/products/", PublicProductListView.as_view(), name="publicproductview"),
+    path('public/products/<slug:slug>/', PublicProductDetailBySlugView.as_view(), name='public-product-detail'),
+    path('vendor/products/', VendorProductListCreateView.as_view(), name = "vendorproductcreate"),
+    path('vendor/products/<int:pk>/', VendorProductDetailView.as_view(), name = "vendorproductdetai"),
+    path('products/search/', ProductSearchView.as_view(), name='product-search'),
+    path('products/suggestions/', ProductSuggestionView.as_view(), name='product-suggestions'),
+    path("variations/", VariationListCreateView.as_view(), name="variations"),
+    path("variation-options/", VariationOptionListCreateView.as_view(), name="variation-options"),
+    path("product-variants/", ProductVariantListCreateView.as_view(), name="product-variants"),
+    path("products/<int:pk>/delete-variants/", delete_product_variations),
+]
