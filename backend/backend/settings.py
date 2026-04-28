@@ -48,7 +48,7 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter"
     ],
     "DEFAULT_THROTTLE_CLASSES":[
-        "rest_framework.throttling.AnnonRateThrottle"
+        "rest_framework.throttling.AnonRateThrottle"
     ],
     "DEFAULT_THROTTLE_RATES":{
         "anon":"5/minute"
