@@ -10,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 class Cart(models.Model):
     user = models.OneToOneField(
         User,
-        related_name="card",
+        related_name="cart",
         on_delete=models.CASCADE
     )
     
