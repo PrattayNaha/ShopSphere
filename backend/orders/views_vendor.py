@@ -156,3 +156,72 @@ class VendorCustomerStatsView(APIView):
             "repeat_percentage": round(repeat_percentage, 2),
             "top_customers": top_customers
         })
+
+
+class VendorSalesAnalyticsView(APIView):
+    permission_classes = [IsAuthenticated, IsVendor]
+
+    def get(self, request):
+        range_param = request.GET.get("range", "7d")
+
+        now_time = now()
+
+        # RANGE LOGIC
+        if range_param == "7d":
+            start_date = now_time - timedelta(days=7)
+            group_format = "%Y-%m-%d"
+        elif range_param == "30d":
+            start_date = now_time - timedelta(days=30)
+            group_format = "%Y-%m-%d"
+        elif range_param == "6m":
+            start_date = now_time - timedelta(days=180)
+            group_format = "%Y-%m"
+        elif range_param == "1y":
+            start_date = now_time - timedelta(days=365)
+            group_format = "%Y-%m"
+        else:
+            start_date = now_time - timedelta(days=7)
+            group_format = "%Y-%m-%d"
+
+        items = OrderItem.objects.filter(
+            product__vendor=request.user,
+            order__status__in=["PAID", "COD"],
+            order__created_at__gte=start_date
+        )
+
+        data_map = defaultdict(lambda: {
+            "revenue": 0,
+            "orders": set()
+        })
+
+        for item in items:
+            key = item.order.created_at.strftime(group_format)
+
+            data_map[key]["revenue"] += float(item.price * item.quantity)
+            data_map[key]["orders"].add(item.order.id)
+
+        result = []
+
+        for k in sorted(data_map.keys()):
+            result.append({
+                "date": k,
+                "revenue": data_map[k]["revenue"],
+                "orders": len(data_map[k]["orders"]),
+            })
+
+        # SUMMARY
+        total_revenue = sum(d["revenue"] for d in result)
+        total_orders = sum(d["orders"] for d in result)
+
+        avg_order_value = (
+            total_revenue / total_orders if total_orders > 0 else 0
+        )
+
+        return Response({
+            "summary": {
+                "revenue": total_revenue,
+                "orders": total_orders,
+                "avg_order_value": round(avg_order_value, 2),
+            },
+            "chart": result
+        })
