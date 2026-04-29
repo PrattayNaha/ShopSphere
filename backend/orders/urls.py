@@ -12,7 +12,7 @@ from .views import (
     OrderStatusView,
     UpdateDeliveryStatusView,
 )
-from .views_vendor import VendorOrderListView, VendorRevenueView, VendorDeleteView, VendorOrderDetailView, VendorOrdersMemoDataView, VendorCustomerStatsView
+from .views_vendor import VendorOrderListView, VendorRevenueView, VendorDeleteView, VendorOrderDetailView, VendorOrdersMemoDataView, VendorCustomerStatsView, VendorSalesAnalyticsView
 
 urlpatterns = [
     path('cart/', CartDetailView.as_view(), name='cart'),
@@ -34,6 +34,7 @@ urlpatterns = [
     path('vendor/orders/<int:id>/', VendorOrderDetailView.as_view(), name='vendor-order-detail'),
     path('vendor/orders/<int:order_id>/update-status/', UpdateDeliveryStatusView.as_view(), name = 'update-delivery-status'),
     path('vendor/customer/', VendorCustomerStatsView.as_view(), name='vendor-customer-stats'),
+    path('vendor/sales-analytics/', VendorSalesAnalyticsView.as_view()),
 
 
 

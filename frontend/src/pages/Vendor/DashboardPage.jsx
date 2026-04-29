@@ -58,6 +58,14 @@ const DashboardPage = () => {
     top_customers: [],
   })
 
+  const [range, setRange] = useState("7d");
+  const [salesData, setSalesData] = useState([]);
+  const [salesSummary, setSalesSummary] = useState({
+    revenue: 0,
+    orders: 0,
+    avg_order_value: 0,
+  });
+
   // ================= FETCH =================
   const fetchData = async () => {
     try {
@@ -79,9 +87,24 @@ const DashboardPage = () => {
     } finally {
       setLoading(false);
     }
-    console.log("ORDER COUNT FROM API:", orderRes.data.length);
-    console.log("TOTAL ORDERS IN STATS:", totals.total_order);
   };
+
+  const fetchSalesAnalytics = async (selectedRange = "7d") => {
+    try {
+      const res = await api.get(`/vendor/sales-analytics/?range=${selectedRange}`);
+
+      setSalesSummary(res.data.summary);
+      setSalesData(res.data.chart);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === "sales") {
+      fetchSalesAnalytics(range);
+    }
+  }, [activeTab, range]);
 
   const processProducts = (products) => {
     let totalStock = 0;
@@ -187,13 +210,13 @@ const DashboardPage = () => {
 
   // ================= CHART =================
   const salesChart = {
-    labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+    labels: salesData.map(d => d.date),
     datasets: [
       {
-        label: "Sales",
-        data: monthlySales,
-        borderColor: "#3b82f6",
-        backgroundColor: "rgba(59,130,246,0.2)",
+        label: "Revenue",
+        data: salesData.map(d => d.revenue),
+        borderColor: "#22c55e",
+        backgroundColor: "rgba(34,197,94,0.2)",
       },
     ],
   };
@@ -260,11 +283,47 @@ const DashboardPage = () => {
       )}
 
       {/* ================= SALES ================= */}
+      {/* ================= SALES ================= */}
       {activeTab === "sales" && (
-        <div className="grid">
-          <div className="chart">
-            <Bar data={salesChart} />
+        <div className="sales-layout">
+
+          {/* SUMMARY CARDS — full-width row */}
+          <div className="sales-summary">
+            <div className="sales-card">
+              <p>Revenue</p>
+              <h2>${salesSummary.revenue}</h2>
+            </div>
+            <div className="sales-card">
+              <p>Orders</p>
+              <h2>{salesSummary.orders}</h2>
+            </div>
+            <div className="sales-card">
+              <p>Avg Order Value</p>
+              <h2>${salesSummary.avg_order_value}</h2>
+            </div>
           </div>
+
+          {/* CHART PANEL — range buttons sit above chart inside the panel */}
+          <div className="sales-chart-panel">
+            <div className="sales-chart-header">
+              <h3>Revenue Over Time</h3>
+              <div className="range-buttons">
+                {["7d", "30d", "6m", "1y"].map(r => (
+                  <button
+                    key={r}
+                    className={range === r ? "active" : ""}
+                    onClick={() => setRange(r)}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="sales-chart-wrapper">
+              <Bar data={salesChart} options={{maintainAspectRatio: false}} />
+            </div>
+          </div>
+
         </div>
       )}
 
