@@ -139,8 +139,17 @@ const DashboardPage = () => {
     setSubCategoryStats(subArr);
   };
 
-  console.log("ORDERS RAW:", orders);
-  console.log("LENGTH:", orders.length);
+  const overviewChart = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    datasets: [
+      {
+        label: "Sales (Last 7 Days)",
+        data: monthlySales,
+        borderColor: "#3b82f6",
+        backgroundColor: "rgba(59,130,246,0.2)",
+      },
+    ],
+  };
 
 
   // ================= PROCESS =================
@@ -253,7 +262,8 @@ const DashboardPage = () => {
 
           <div className="grid">
             <div className="chart">
-              <Line data={salesChart} />
+              <Line data={overviewChart} options={{maintainAspectRatio: false}}
+              />
             </div>
 
             <div className="panel">
