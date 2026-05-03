@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -44,7 +45,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     slug = models.SlugField(max_length=255, unique=True,  blank=True)
     stock = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to="products/", null=True, blank=True)
+    image = CloudinaryField("image", folder="products", blank=True, null=True)
     is_active = models.BooleanField(default = True)
     created_at = models.DateTimeField(auto_now_add=True)
     

@@ -65,8 +65,10 @@ class ProductSerializer(serializers.ModelSerializer):
     )
     variants = ProductVariantSerializer(many=True, read_only=True)
     variations = VariationSerializer(many=True, read_only=True)
+    image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = Product
         fields = "__all__"
         read_only_fields = ("vendor", "slug")
+    
