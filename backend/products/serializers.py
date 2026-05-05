@@ -71,5 +71,18 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
         read_only_fields = ("vendor", "slug")
+
+class ProductListSerializer(serializers.ModelSerializer):
+    subcategory_name = serializers.CharField(source="subcategory.name", read_only=True)
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ["id", "name", "price", "image", "slug", "subcategory_name"]
+
+    def get_image(self, obj):
+        if obj.image:
+            return obj.image.url   # ✅ THIS is the key fix
+        return None
         
     

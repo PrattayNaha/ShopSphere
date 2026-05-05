@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Category, SubCategory, Product, ProductVariant, VariationOption, Variation
-from .serializers import CategorySerializer, SubCategorySerializer, ProductSerializer, ProductVariantSerializer, VariationOptionSerializer, VariationSerializer
+from .serializers import CategorySerializer, SubCategorySerializer, ProductSerializer, ProductVariantSerializer, VariationOptionSerializer, VariationSerializer, ProductListSerializer
 from .permissions import IsVendor
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
@@ -10,6 +10,10 @@ from django.db.models.functions import Lower, Replace
 from django.db.models import Value, Q
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from .pagination import ProductCursorPagination
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.views.decorators.vary import vary_on_headers
 
 # Create your views here.
 #create list
@@ -82,15 +86,21 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ["PUT", "PATCH", "DELETE"]:
             return [IsVendor()]
         return [AllowAny()]
-    
+
+# @method_decorator(cache_page(60*5), name = "dispatch")
+# @method_decorator(vary_on_headers("Authorization"), name = "dispatch")
 class PublicProductListView(generics.ListAPIView):
-    serializer_class = ProductSerializer
+    serializer_class = ProductListSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     permission_classes = [AllowAny]
-    pagination_class = None  # Disable pagination for this view
+    pagination_class = ProductCursorPagination  # Disable pagination for this view
 
     def get_queryset(self):
-        qs = Product.objects.filter(is_active=True)
+        qs = Product.objects.filter(is_active=True).select_related(
+            "subcategory", "category"
+        ).only(
+            "id", "name", "price", "image", "slug", "subcategory_id", "category_id"
+        ).order_by("-id")
         
         subcategory = self.request.query_params.get("subcategory")
         if subcategory:
@@ -108,11 +118,7 @@ class PublicProductListView(generics.ListAPIView):
         search = self.request.query_params.get("search")
         if search:
             normalized_search = search.replace(" ", "").lower()
-            qs = qs.annotate(
-                normalized_name=Lower(
-                    Replace("name", Value(" "), Value(""))
-                )
-            ).filter(normalized_name__icontains=normalized_search)
+            qs = qs.filter(name__icontains=search)
         
         return qs
 
